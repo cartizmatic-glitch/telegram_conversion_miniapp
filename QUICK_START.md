@@ -74,10 +74,13 @@ npm run deploy
 
 ### 5. تنظیمات Telegram Bot
 
+> ⚠️ **مهم**: **نیازی به Bot Token ندارید!** این یک frontend-only app است.
+
 1. به [@BotFather](https://t.me/botfather) در تلگرام بروید
 2. دستور `/newbot` را ارسال کنید
 3. نام ربات را وارد کنید (مثلاً: `Unit Converter Bot`)
 4. Username ربات را وارد کنید (باید به `bot` ختم شود، مثلاً: `unit_converter_bot`)
+   - BotFather یک Token به شما می‌دهد، اما **نیازی به آن ندارید**! فقط ربات را بسازید.
 5. دستور `/newapp` را ارسال کنید
 6. ربات خود را انتخاب کنید
 7. اطلاعات را وارد کنید:
