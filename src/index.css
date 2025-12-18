@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    @apply h-full;
+    /* بهبود scroll behavior */
+    scroll-behavior: smooth;
+    /* بهبود font rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply m-0 p-0 min-h-screen;
+    direction: rtl;
+    font-family: 'Vazirmatn', system-ui, sans-serif;
+    /* استفاده از متغیر viewport height برای موبایل */
+    min-height: calc(var(--vh, 1vh) * 100);
+    /* بهبود touch scrolling در iOS */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  #root {
+    @apply min-h-screen;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+  
+  /* پشتیبانی از dark mode */
+  body[data-theme="dark"] {
+    @apply bg-gray-900 text-gray-100;
+  }
+  
+  body[data-theme="light"] {
+    @apply bg-gray-50 text-gray-900;
+  }
+  
+  /* بهبود accessibility برای focus states */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-blue-500;
+  }
+  
+  /* بهبود انتخاب متن */
+  ::selection {
+    @apply bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100;
+  }
+}
+
+@layer components {
+  /* کلاس‌های سفارشی برای بهبود UX */
+  .glass-effect {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-md;
+  }
+  
+  .card-shadow {
+    @apply shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+}
+
+/* استایل برای select dropdown */
+select {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* استایل option ها در dropdown - Glassmorphism */
+select option {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #1f2937 !important;
+  padding: 0.75rem 1rem !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  font-family: 'Vazirmatn', system-ui, sans-serif !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  margin: 0.125rem 0 !important;
+  cursor: pointer !important;
+}
+
+select option:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+select option:checked {
+  background-color: rgba(59, 130, 246, 0.3) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  color: #1e40af !important;
+  font-weight: 600 !important;
+}
+
+/* استایل برای dark mode */
+@media (prefers-color-scheme: dark) {
+  select {
+    background-color: rgba(31, 41, 55, 0.3);
+  }
+  
+  select option {
+    background-color: rgba(31, 41, 55, 0.85) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #f9fafb !important;
+  }
+  
+  select option:hover {
+    background-color: rgba(31, 41, 55, 0.95) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+  }
+  
+  select option:checked {
+    background-color: rgba(59, 130, 246, 0.4) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    color: #93c5fd !important;
+    font-weight: 600 !important;
+  }
+}
+
