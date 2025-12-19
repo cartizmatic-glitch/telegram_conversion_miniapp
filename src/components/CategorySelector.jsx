@@ -49,6 +49,10 @@ export function CategorySelector({ selectedCategory, onCategoryChange }) {
           const colors = categoryColors[category.key] || categoryColors.length;
           const isSelected = selectedCategory === category.key;
           
+          // تعیین موقعیت برای سرعت: ردیف سوم ستون وسط
+          const isSpeed = category.key === 'speed';
+          const gridPosition = isSpeed ? 'col-start-2' : '';
+          
           return (
             <motion.button
               key={category.key}
@@ -60,7 +64,7 @@ export function CategorySelector({ selectedCategory, onCategoryChange }) {
               whileTap={{ scale: 0.95 }}
               className={`
                 relative px-3 py-3 rounded-2xl font-medium text-xs transition-all duration-200
-                backdrop-blur-xl border-2 overflow-hidden
+                backdrop-blur-xl border-2 overflow-hidden ${gridPosition}
                 ${
                   isSelected
                     ? 'text-white shadow-xl border-white/40'

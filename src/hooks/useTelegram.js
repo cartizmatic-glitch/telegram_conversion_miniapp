@@ -101,13 +101,8 @@ export function useTelegram() {
       if (telegram.BackButton) {
         telegram.BackButton.show();
         telegram.BackButton.onClick(() => {
-          // اگر در صفحه Welcome هستیم، بستن اپ
-          if (window.location.hash === '#welcome' || !window.location.hash) {
-            telegram.close();
-          } else {
-            // برگشت به صفحه قبلی
-            window.history.back();
-          }
+          // بستن اپ
+          telegram.close();
         });
       }
       

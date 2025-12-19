@@ -40,6 +40,13 @@ export function FromUnitSelector({
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'right 1rem center',
           paddingLeft: '2.5rem',
+          textRendering: 'optimizeLegibility',
+          WebkitFontSmoothing: 'antialiased',
+          MozOsxFontSmoothing: 'grayscale',
+          textShadow: '0 0 0.5px rgba(0, 0, 0, 0.1)',
+          WebkitTextStroke: '0.2px transparent',
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
         }}
         onFocus={(e) => {
           e.target.style.borderColor = `${colors.from}80`;
@@ -61,6 +68,12 @@ export function FromUnitSelector({
               padding: '0.75rem 1rem',
               fontSize: '1rem',
               fontWeight: '500',
+              textRendering: 'optimizeLegibility',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+              textShadow: '0 0 0.5px rgba(0, 0, 0, 0.1)',
+              WebkitTextStroke: '0.2px transparent',
+              transform: 'translateZ(0)',
             }}
           >
             {unit.name} ({unit.symbol})

@@ -9,8 +9,6 @@ import { useTelegram } from './hooks/useTelegram.js';
 import { convert } from './utils/conversions/index.js';
 import { getUnitsByCategory } from './constants/units.js';
 import { parseNumber, isValidValue, limitDecimals, sanitizeInput } from './utils/validation.js';
-import { Welcome } from './components/Welcome.jsx';
-import { Header } from './components/Header.jsx';
 import { CategorySelector } from './components/CategorySelector.jsx';
 import { CategoryBackground } from './components/CategoryBackground.jsx';
 import { FromUnitSelector } from './components/FromUnitSelector.jsx';
@@ -19,13 +17,11 @@ import { SwapButton } from './components/SwapButton.jsx';
 import { NumberInput } from './components/NumberInput.jsx';
 import { ResultDisplay } from './components/ResultDisplay.jsx';
 import { CopyButton } from './components/CopyButton.jsx';
+import { ShareButton } from './components/ShareButton.jsx';
 
 function App() {
   // استفاده از Telegram hook
   const { theme, hapticFeedback } = useTelegram();
-
-  // State برای نمایش صفحه Welcome
-  const [showWelcome, setShowWelcome] = useState(true);
 
   // State management
   const [category, setCategory] = useState('length');
@@ -147,31 +143,17 @@ function App() {
     setToUnit(temp);
   }, [fromUnit, toUnit, hapticFeedback]);
 
-  // تابع شروع (برای رفتن از صفحه Welcome به صفحه اصلی)
-  const handleStart = useCallback(() => {
-    setShowWelcome(false);
-  }, []);
-
   return (
-    <>
-      <AnimatePresence mode="wait">
-        {showWelcome ? (
-          <Welcome key="welcome" onStart={handleStart} />
-        ) : (
-          <motion.div
-            key="main"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="min-h-screen relative overflow-hidden"
-          >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      className="min-h-screen relative overflow-hidden"
+    >
             {/* پس‌زمینه gradient متحرک بر اساس دسته */}
             <CategoryBackground category={category} />
             
-            <Header />
-            
-            <main className="max-w-md mx-auto pb-8 relative z-10">
+            <main className="max-w-md mx-auto pb-8 relative z-10 pt-4">
               <CategorySelector
                 selectedCategory={category}
                 onCategoryChange={handleCategoryChange}
@@ -218,17 +200,28 @@ function App() {
                 />
               </div>
 
-              {/* دکمه کپی */}
+              {/* دکمه‌های کپی و اشتراک‌گذاری */}
               {result !== null && (
-                <div className="flex justify-center px-4 pb-2">
+                <div className="flex justify-center gap-3 px-4 pb-2">
                   <CopyButton value={result} />
+                  <ShareButton 
+                    result={result} 
+                    category={category}
+                    fromUnit={fromUnit}
+                    toUnit={toUnit}
+                    inputValue={inputValue}
+                  />
                 </div>
               )}
+
+              {/* نسخه */}
+              <div className="flex justify-center mt-6 pb-4">
+                <p className="text-xs text-white/50 dark:text-gray-400/50">
+                  نسخه 1.0
+                </p>
+              </div>
             </main>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    </motion.div>
   );
 }
 
